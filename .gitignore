@@ -8,3 +8,9 @@ wheels/
 
 # Virtual environments
 .venv
+# ZenML
+.zen
+# Mise
+.mise.toml
+# SQLite Databases
+*.db

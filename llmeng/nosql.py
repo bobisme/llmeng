@@ -1,6 +1,8 @@
 from contextlib import contextmanager
 import sqlite3
 
+from loguru import logger
+
 
 class DatabaseConnectionManager:
     _instance = None
@@ -15,7 +17,6 @@ class DatabaseConnectionManager:
         if not self._initialized and database_path:
             self.database_path = database_path
             self.initialize()
-            DatabaseConnectionManager._initialized = True
 
     @contextmanager
     def get_connection(self):
@@ -34,6 +35,7 @@ class DatabaseConnectionManager:
 
     def initialize(self):
         """Initialize the database with required tables."""
+        DatabaseConnectionManager._initialized = True
         with self.get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
