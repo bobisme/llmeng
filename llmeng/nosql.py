@@ -1,8 +1,6 @@
 from contextlib import contextmanager
 import sqlite3
 
-from loguru import logger
-
 
 class DatabaseConnectionManager:
     _instance = None

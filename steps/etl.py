@@ -8,12 +8,13 @@ from zenml import get_step_context, step
 
 from llmeng.app.crawlers.dispatcher import CrawlerDispatcher
 from llmeng.domain.documents import UserDocument
+from llmeng.utils import split_user_full_name
 
 
 @step
 def get_or_create_user(user_full_name: str) -> Annotated[UserDocument, "user"]:
     logger.info(f"Getting or creating user: {user_full_name}")
-    first, last = user_full_name.split(" ", 1)
+    first, last = split_user_full_name(user_full_name)
     user = UserDocument.get_or_create(first_name=first, last_name=last)
     step_context = get_step_context()
     step_context.add_output_metadata(

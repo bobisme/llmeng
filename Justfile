@@ -4,10 +4,10 @@ set shell := ["bash", "-c"]
 # # Data pipelines
 # run-digital-data-etl-alex:
 #     echo 'It is not supported anymore.'
-#
-# run-digital-data-etl-maxime:
-#     python -m tools.run --run-etl --no-cache --etl-config-filename digital_data_etl_maxime_labonne.yaml
-#
+
+run-digital-data-etl-maxime:
+    python -m tools.run run-etl digital_data_etl_maxime_labonne.yaml
+
 # run-digital-data-etl-paul:
 #     python -m tools.run --run-etl --no-cache --etl-config-filename digital_data_etl_paul_iusztin.yaml
 #
