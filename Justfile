@@ -6,11 +6,11 @@ set shell := ["bash", "-c"]
 #     echo 'It is not supported anymore.'
 
 run-digital-data-etl-maxime:
-    python -m tools.run run-etl digital_data_etl_maxime_labonne.yaml
+    python -m tools.run digital_data_etl_maxime_labonne.yaml
 
-# run-digital-data-etl-paul:
-#     python -m tools.run --run-etl --no-cache --etl-config-filename digital_data_etl_paul_iusztin.yaml
-#
+run-digital-data-etl-paul:
+    python -m tools.run digital_data_etl_paul_iusztin.yaml
+
 # # Compound command for running both ETL tasks
 # run-digital-data-etl: run-digital-data-etl-maxime run-digital-data-etl-paul
 #
