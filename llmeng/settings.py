@@ -16,7 +16,7 @@ class Settings(BaseSettings):
 
     # QdrantDB
     USE_QDRANT_CLOUD: bool = False
-    QDRANT_DATABASE_HOST: str = "localhost"
+    QDRANT_DATABASE_HOST: str = "127.0.0.1"
     QDRANT_DATABASE_PORT: int = 6333
     QDRANT_CLOUD_URL: str = "str"
     QDRANT_APIKEY: str | None = None

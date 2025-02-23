@@ -5,6 +5,7 @@ import typer
 from loguru import logger
 
 from pipelines.digital_data_etl import digital_data_etl
+from pipelines.feature_engineering import feature_engineering
 
 app = typer.Typer()
 
@@ -21,6 +22,24 @@ def run_etl(etl_config_filename: str):
         **run_args_etl
     )
     logger.info("Done")
+
+
+@app.command()
+def run_feature_engineering(
+    no_cache: bool = False,
+    config_path: Path = root_dir / "configs" / "feature_engineering.yaml",
+    run_name: str | None = None,
+):
+    run_args_fe = {}
+    pipeline_args = {
+        "enable_cache": not no_cache,
+        "config_path": config_path,
+        "run_name": (
+            run_name
+            or f"feature_engineering_run_{dt.now().strftime('%Y_%m_%d_%H_%M_%S')}"
+        ),
+    }
+    feature_engineering.with_options(**pipeline_args)(**run_args_fe)
 
 
 if __name__ == "__main__":

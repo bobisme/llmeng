@@ -13,10 +13,10 @@ run-digital-data-etl-paul:
 
 # # Compound command for running both ETL tasks
 # run-digital-data-etl: run-digital-data-etl-maxime run-digital-data-etl-paul
-#
-# run-feature-engineering-pipeline:
-#     python -m tools.run --no-cache --run-feature-engineering
-#
+
+run-feature-engineering-pipeline:
+    python -m tools.run run-feature-engineering --no-cache
+
 # run-generate-instruct-datasets-pipeline:
 #     python -m tools.run --no-cache --run-generate-instruct-datasets
 #
@@ -150,3 +150,11 @@ local-zenml-server-up:
 #     #!/usr/bin/env bash
 #     export ENV_FILE=.env.testing
 #     pytest tests/
+
+start-qdrant:
+  mkdir -p qdrant_storage
+  podman run -d \
+    --name qdrant \
+    -p 6333:6333 -p 6334:6334 \
+    -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
+    docker.io/qdrant/qdrant
