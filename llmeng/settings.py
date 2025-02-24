@@ -21,6 +21,10 @@ class Settings(BaseSettings):
     QDRANT_CLOUD_URL: str = "str"
     QDRANT_APIKEY: str | None = None
 
+    # Other
+    DATASET_GENERATION_MODEL: str = "openrouter/openai/gpt-4o-mini"
+    OPENROUTER_API_KEY: str | None = None
+
     @classmethod
     def load_settings(cls) -> "Settings":
         """
