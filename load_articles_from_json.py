@@ -6,8 +6,8 @@ import re
 from datasets import Dataset, DatasetDict
 from litellm import Message, acompletion
 from litellm.types.utils import ModelResponse
-from rich.progress import track
 from rich.console import Console
+from rich.progress import track
 
 from llmeng.settings import settings
 
@@ -95,7 +95,7 @@ the writing style of the context. Example instruction: Explain the concept of
 an LLM Twin. Example answer: An LLM Twin is essentially an AI character that
 mimics your writing style, personality, and voice. It's designed to write just
 like you by incorporating these elements into a language model. The idea is to
-create a digital replica of your writing habits using advanced AI techniques. 
+create a digital replica of your writing habits using advanced AI techniques.
 Provide your response in JSON format with the following structure:
 {{
     "instruction_answer_pairs": [
@@ -157,7 +157,7 @@ async def create_instruction_dataset(dataset: Dataset, num_workers: int = 4) -> 
 
 def main(regen: bool = False) -> DatasetDict:
     DATASET_PATH = "instruction_dataset.json"
-    if not os.path.exists(DATASET_PATH):
+    if not os.path.exists(DATASET_PATH) or regen:
         # Load
         raw_dataset = load_articles_from_json("./cleaned_documents.json")
         console.print("Raw dataset:")

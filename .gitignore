@@ -1,5 +1,10 @@
 /qdrant_storage
 .env
+articles.json
+cleaned_documents.json
+instruction_dataset.json
+model/
+output/
 
 # Python-generated files
 __pycache__/

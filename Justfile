@@ -62,13 +62,15 @@ run-feature-engineering-pipeline:
 #
 # local-docker-infrastructure-down:
 #     docker compose stop
-#
+
+# Stop ZenML server
 local-zenml-server-down:
     zenml logout --local
 
-# Conditional command for macOS vs other platforms
+# Start ZenML server
 local-zenml-server-up:
     #!/usr/bin/env bash
+    # Conditional command for macOS vs other platforms
     if [ "$(uname)" = "Darwin" ]; then
         export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
         zenml login --local
@@ -151,6 +153,7 @@ local-zenml-server-up:
 #     export ENV_FILE=.env.testing
 #     pytest tests/
 
+# Start qdrant server
 start-qdrant:
   mkdir -p qdrant_storage
   podman run -d \
@@ -158,3 +161,7 @@ start-qdrant:
     -p 6333:6333 -p 6334:6334 \
     -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
     docker.io/qdrant/qdrant
+
+# Stop qdrant server
+stop-qdrant:
+  podman stop qdrant || true
